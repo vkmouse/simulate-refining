@@ -11,7 +11,7 @@ import EnrichedOridecon from "./RefiningMaterial/EnrichedOridecon";
 import EtelBradium from "./RefiningMaterial/EtelBradium";
 import EtelCarnium from "./RefiningMaterial/EtelCarnium";
 import Etherdeocon from "./RefiningMaterial/Etherdeocon";
-import Etherium from "./RefiningMaterial/Etherium";
+import Etherium from "./RefiningMaterial/Ethernium";
 import HDBradium from "./RefiningMaterial/HDBradium";
 import HDCarnium from "./RefiningMaterial/HDCarnium";
 import HDElunium from "./RefiningMaterial/HDElunium";

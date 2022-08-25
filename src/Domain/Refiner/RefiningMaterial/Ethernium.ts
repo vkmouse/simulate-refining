@@ -2,8 +2,8 @@ import { EquipmentCategory, ProbabilityCategory, EquipmentLevel } from "../../..
 import RefineMaterial from "../../Model/RefineMaterial";
 import { RefineDecreased } from "../FailurePenalty";
 
-class Elunium implements RefineMaterial {
-  name = "Elunium";
+class Ethernium implements RefineMaterial {
+  name = "Ethernium";
   chineseName = "乙太鋁";
   probabilityCategory = ProbabilityCategory.Normal;
   refinableEquipmentCategory = EquipmentCategory.Armor;
@@ -21,4 +21,4 @@ class Elunium implements RefineMaterial {
   failurePenalty = new RefineDecreased(3);
 }
 
-export default Elunium;
+export default Ethernium;
