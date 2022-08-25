@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class Phracon implements RefineMaterial {
+  name = "Phracon";
   chineseName = "強化武器金屬-級數一";
   probabilityCategory = ProbabilityCategory.Normal;
   refinableEquipmentCategory = EquipmentCategory.Weapon;

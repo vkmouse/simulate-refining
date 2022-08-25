@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { RefineDecreased } from "../FailurePenalty";
 
 class Carnium implements RefineMaterial {
+  name = "Carnium";
   chineseName = "鈣礦石";
   probabilityCategory = ProbabilityCategory.Normal;
   refinableEquipmentCategory = EquipmentCategory.Armor;

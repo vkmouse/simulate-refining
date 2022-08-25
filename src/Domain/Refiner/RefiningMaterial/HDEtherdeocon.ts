@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class HDEtherdeocon implements RefineMaterial {
+  name = "HDEtherdeocon";
   chineseName = "高濃縮乙太神之金屬";
   probabilityCategory = ProbabilityCategory.Special;
   refinableEquipmentCategory = EquipmentCategory.Weapon;

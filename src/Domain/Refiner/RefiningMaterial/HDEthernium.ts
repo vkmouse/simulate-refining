@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class HDEthernium implements RefineMaterial {
+  name = "HDEthernium";
   chineseName = "高濃縮乙太鋁";
   probabilityCategory = ProbabilityCategory.Special;
   refinableEquipmentCategory = EquipmentCategory.Armor;

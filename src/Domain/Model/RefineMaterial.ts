@@ -2,6 +2,7 @@ import { EquipmentCategory, EquipmentLevelTable, ProbabilityCategory } from "../
 import FailurePenalty from "./FailurePenalty";
 
 interface RefineMaterial {
+  readonly name: string
   readonly chineseName: string
   readonly probabilityCategory: ProbabilityCategory
   readonly refinableEquipmentCategory: EquipmentCategory

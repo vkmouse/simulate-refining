@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class Oridecon implements RefineMaterial {
+  name = "Oridecon";
   chineseName = "神之金屬";
   probabilityCategory = ProbabilityCategory.Normal;
   refinableEquipmentCategory = EquipmentCategory.Weapon;

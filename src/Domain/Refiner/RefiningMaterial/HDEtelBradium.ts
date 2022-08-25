@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class HDEtelBradium implements RefineMaterial {
+  name = "HDEtelBradium";
   chineseName = "高密度乙太鈽鐳礦石";
   probabilityCategory = ProbabilityCategory.Special;
   refinableEquipmentCategory = EquipmentCategory.Weapon;

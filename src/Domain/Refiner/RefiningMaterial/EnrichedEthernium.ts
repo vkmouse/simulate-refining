@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { RefineDecreased } from "../FailurePenalty";
 
 class EnrichedEthernium implements RefineMaterial {
+  name = "EnrichedEthernium";
   chineseName = "濃縮乙太鋁";
   probabilityCategory = ProbabilityCategory.Special;
   refinableEquipmentCategory = EquipmentCategory.Armor;

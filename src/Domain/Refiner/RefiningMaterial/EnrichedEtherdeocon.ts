@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { RefineDecreased } from "../FailurePenalty";
 
 class EnrichedEtherdeocon implements RefineMaterial {
+  name = "EnrichedEtherdeocon";
   chineseName = "濃縮乙太神之金屬";
   probabilityCategory = ProbabilityCategory.Special;
   refinableEquipmentCategory = EquipmentCategory.Weapon;

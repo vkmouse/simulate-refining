@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class Emveretarcon implements RefineMaterial {
+  name = "Emveretarcon";
   chineseName = "強化武器金屬-級數二";
   probabilityCategory = ProbabilityCategory.Normal;
   refinableEquipmentCategory = EquipmentCategory.Weapon;

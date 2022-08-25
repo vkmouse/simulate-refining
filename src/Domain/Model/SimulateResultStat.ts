@@ -114,10 +114,11 @@ class SimulateResultStat {
   }
 
   private getBlessingCost() {
+    this.numBlessings = this.refineTimes * this.blessingDemand[this.refineLevel];
     if (this.isInfinity()) {
       return Infinity;
     }
-    return this.blessingPrice * (this.refineTimes / this.numSuccess) * this.blessingDemand[this.refineLevel];
+    return this.blessingPrice * (this.numBlessings / this.numSuccess);
   }
 
   private isInfinity() {

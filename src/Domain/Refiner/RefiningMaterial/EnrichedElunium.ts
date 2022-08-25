@@ -3,6 +3,7 @@ import RefineMaterial from "../../Model/RefineMaterial";
 import { ItemDestroyed } from "../FailurePenalty";
 
 class EnrichedElunium implements RefineMaterial {
+  name = "EnrichedElunium";
   chineseName = "濃縮鋁";
   probabilityCategory = ProbabilityCategory.Special;
   refinableEquipmentCategory = EquipmentCategory.Armor;

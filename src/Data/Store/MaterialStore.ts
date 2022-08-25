@@ -45,7 +45,7 @@ export default class MaterialStore implements RefineMaterials {
 
   getPrice(material: RefineMaterial) {
     type objectKey = keyof RefineMaterials
-    const key = material.constructor.name as objectKey;
+    const key = material.name as objectKey;
     return this[key];
   }
 }
