@@ -1,46 +1,87 @@
-# Getting Started with Create React App
+# RO 精煉模擬器
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這是一個台版 RO 的[精煉模擬器](https://vkmouse.github.io/simulate-refining/)
 
-## Available Scripts
+## 支援項目
 
-In the project directory, you can run:
+武器: 武器等級 1、武器等級 2、武器等級 3、武器等級 4、武器等級 5  
+防具: 防具等級 1、防具等級 2  
+精煉範圍: 0 - 20  
+樣本數量: 0 - 999,999  
+價錢範圍: 0 - 999,999,999,999  
+支援鐵匠的祝福
 
-### `npm start`
+## 模擬方式
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+每個樣本根據提供的材料，持續精煉直到「裝備損毀」或「達到精煉目標」，並記錄過程中耗費的材料數量
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 模擬結果
 
-### `npm test`
+### 精煉次數
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**所有樣本**的該精煉步驟總數量，如果失敗懲罰是退階或不變，精煉次數會大於樣本數。
 
-### `npm run build`
+須注意退階可能造成難以到達「裝備損毀」或「達到精煉目標」，建議不要設定太大樣本以免卡住
+  
+會退階情況: 
+1. +7 ~ +9 使用高濃縮不使用鐵祝
+2. +11 ~ +20 一級武器到四級武器和一級防具不使用鐵祝
+3. +0 ~ +10 五級武器和二級防具不使用鐵祝
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 祝福數量
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**所有樣本**的鐵匠的祝福消耗數量  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| 精煉值 |祝福數量|
+|:-----:|:------:|
+| 7➔8  |   1個  |
+| 8➔9  |   2個  |
+| 9➔10 |   3個  |
+| 10➔11|   4個  |
+| 11➔12|   4個  |
+| 12➔13|   9個  |
+| 13➔14|   15個 |
 
-### `npm run eject`
+### 成功數量
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**所有樣本**在該精煉步驟成功過的數量，同個樣本不重複統計，且只在乎成功過不在乎最後結果是否損壞
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+範例 1: 0➔1 一定成功，給予 5 個樣本，成功數量就是 5  
+範例 2: 7➔8 使用高濃縮，給予 1 個樣本，7➔8 成功就代表成功數量是 1，不論之後退階或最後在 6➔7 損壞，成功數量都是 1  
+範例 3: 4➔5 五級武器使用普通材料，給予樣本 1000 個，其中有 850 個曾退階到 +0，那麼 0➔1 的成功數量就是 850 個  
+  
+統計概念是如果到達該精煉值就收手，那麼會有的數量視為成功數量，再舉一個極端例子
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 價格期望值
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**單一樣本**在該精煉步驟的期望值，同時考慮所有樣本的裝備價值和總材料價值
 
-## Learn More
+範例 1: 給予 5 個樣本，4➔5 精煉次數 5，裝備價值就是
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    (裝備價值 ⨯ 5 + 4➔5材料價值 ⨯ 5) ÷ 5
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+範例 2: 在範例 1 的情況下，5➔6 精煉次數 5，成功數量 3，裝備價值就是
+
+    (裝備價值 ⨯ 5 + 4➔5材料價值 ⨯ 5 + 5➔6材料價值 ⨯ 5) ÷ 3
+
+範例 3: 在範例 2 的情況下，6➔7 精煉次數 3，成功數量 1，裝備價值就是
+
+    (裝備價值 ⨯ 5 + 4➔5材料價值 ⨯ 5 + 5➔6材料價值 ⨯ 5 + 6➔7材料價值 ⨯ 3) ÷ 1
+
+若包含鐵匠的祝福時，鐵匠的祝福會包含在該材料價值之中
+
+範例 4: 給予 5 個樣本，8➔9 精煉次數 5，使用鐵匠的祝福，裝備價值就是
+
+    (裝備價值 ⨯ 5 + (8➔9材料價值 + 鐵祝價值 ⨯ 2) ⨯ 5) ÷ 5
+    
+範例 5: 在範例 4 的情況下，9➔10 精煉次數 10，使用鐵匠的祝福，裝備價值就是
+
+    (裝備價值 ⨯ 5 + (8➔9材料價值 + 鐵祝價值 ⨯ 2) ⨯ 5 + (9➔10材料價值 + 鐵祝價值 ⨯ 3)) ÷ 5
+
+## 參考資料
+
+1. [Refine \[Hazy Forest\]](https://hazyforest.com/equipment:refine)  
+2. [【閒聊】精煉素材與機率整理（3F補充精鍊BUG閒聊）](https://forum.gamer.com.tw/C.php?bsn=4212&snA=422520)
+3. [【情報】五級武器與二級防具 精煉與相關強化整理](https://forum.gamer.com.tw/C.php?bsn=4212&snA=427927)
+4. [【官方】「鐵匠的祝福」精煉時搭配上限開放至+14。](https://ro.gnjoy.com.tw/notice/notice_view.aspx?id=125135)
+5. [【官方】精煉系統更新](https://ro.gnjoy.com.tw/notice/notice_view.aspx?id=2255)
