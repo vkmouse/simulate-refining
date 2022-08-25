@@ -12,7 +12,7 @@ interface IProps {
 
 function EquipmentCategoryRadioButton(props: IProps) {
   const { value, onChange } = props;
-  const sx: SxProps<Theme> = { fontSize: 16 };
+  const sx: SxProps<Theme> = { fontSize: 16, lineHeight: 1.2 };
   return (
       <ToggleButtonGroup
         color="primary"

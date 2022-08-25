@@ -15,7 +15,7 @@ interface IProps {
     newAlignment: EquipmentCategory | null
   ) => void
   setLevel: (e: SelectChangeEvent<EquipmentLevel>) => void
-  setPrice: (e: ChangeEvent<HTMLInputElement>) => void
+  setPrice: (value: number) => void
   levelData: { value: EquipmentLevel, name: string }[]
 }
 

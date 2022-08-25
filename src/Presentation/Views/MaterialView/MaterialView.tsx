@@ -3,7 +3,7 @@ import { ChangeEvent, Component } from "react";
 import PriceTextField from "../../Components/PriceTextField";
 
 interface IProps {
-  setPrice: (e: ChangeEvent<HTMLInputElement>, name: string) => void
+  setPrice: (value: number, name: string) => void
   items: { label: string, propertyName: string, value: number }[][]
 }
 
@@ -25,7 +25,7 @@ class MaterialView extends Component<IProps> {
                 key={n.label}
                 label={n.label}
                 value={n.value.toString()}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e: number) => {
                   setPrice(e, n.propertyName);
                 }}
               /> 

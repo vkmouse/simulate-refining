@@ -24,12 +24,8 @@ class MaterialViewModel extends React.Component<IProps> {
     this.equipmentStore = props.equipmentStore;
   }
 
-  setPrice = (e: ChangeEvent<HTMLInputElement>, name: string): void => {
-    let newPrice = parseInt(e.target.value.replace(/\D/g, ''));
-    if (isNaN(newPrice)) { 
-        newPrice = 0; 
-    }
-    this.store.setPrice(newPrice, name);
+  setPrice = (value: number, name: string): void => {
+    this.store?.setPrice(value, name);
   };
 
   getItems = () => {

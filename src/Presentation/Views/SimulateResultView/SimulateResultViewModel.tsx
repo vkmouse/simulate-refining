@@ -41,13 +41,6 @@ class SimulateReultViewModel extends Component<IProps> {
       enableBlessings, 
       numSamples,
       equipmentPrice});
-    console.log({
-      results, 
-      materialStore, 
-      enableBlessings, 
-      numSamples,
-      equipmentPrice,
-      calculatorCalculate: calculator.calculate()})
     return calculator.calculate();
   }
 

@@ -11,7 +11,7 @@ interface IProps {
 function EquipmentLevelCombobox(props: IProps) {
   const { data, value, onChange } = props;
   return (
-    <FormControl sx={{ m: 1, minWidth: 120, margin: 0, marginLeft: 1 }} size="small">
+    <FormControl sx={{ m: 1, minWidth: 125, margin: 0, marginLeft: 1 }} size="small">
       <InputLabel>裝備等級</InputLabel>
         <Select
           value={value}

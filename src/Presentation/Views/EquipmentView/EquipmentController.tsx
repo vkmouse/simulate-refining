@@ -56,12 +56,8 @@ class EquipmentController extends React.Component<IProps, IState> {
     this.store?.setLevel(e.target.value as EquipmentLevel);
   };
 
-  setPrice = (e: ChangeEvent<HTMLInputElement>): void => {
-    let newPrice = parseInt(e.target.value.replace(/\D/g, ''));
-    if (isNaN(newPrice)) { 
-        newPrice = 0; 
-    }
-    this.store?.setPrice(newPrice);
+  setPrice = (value: number): void => {
+    this.store?.setPrice(value);
   };
 
   render() {
