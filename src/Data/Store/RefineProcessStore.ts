@@ -48,7 +48,7 @@ export default class RefineProcessStore implements RefineProcess {
       for (const level in EquipmentLevel) {
         const j = level as EquipmentLevel;
         for (let refineLevel = 0; refineLevel < 20; refineLevel++) {
-          const m = table.get(i)?.get(j)?.get(refineLevel)?.at(0) ?? new Oridecon;
+          const m = table.get(i)?.get(j)?.get(refineLevel)?.at(0) ?? new Oridecon();
           this.selectedMaterials[i][j].push(m);
           this.enableBlessings[i][j].push(false);
         }

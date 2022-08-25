@@ -38,7 +38,7 @@ export default class MaterialStore implements RefineMaterials {
   @action setPrice(value: number, name: string) {
     type objectKey = keyof RefineMaterials
     const key = name as objectKey;
-    if (this[key] != value) {
+    if (this[key] !== value) {
       this[key] = value;
     }
   }

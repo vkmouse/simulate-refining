@@ -41,14 +41,14 @@ class EquipmentController extends React.Component<IProps, IState> {
     event: React.MouseEvent<HTMLElement>,
     newAlignment: EquipmentCategory | null
   ): void => {
-    if (newAlignment == null) {
+    if (newAlignment === null) {
       return;
     }
     const newCategory = newAlignment;
     this.store?.setCategory(newCategory);
     this.store?.setLevel(EquipmentLevel.Level1);
     this.setState({
-      levelData: newCategory == EquipmentCategory.Weapon ? this.weaponLevelData : this.armorLevelData
+      levelData: newCategory === EquipmentCategory.Weapon ? this.weaponLevelData : this.armorLevelData
     });
   };
 

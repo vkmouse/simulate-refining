@@ -25,10 +25,6 @@ interface IProps {
 class SimulateViewModel extends Component<IProps> {
   static defaultProps = {} as IProps;
 
-  constructor(props: IProps) {
-    super(props);
-  }
-
   handleNumSamplesChange = (e: ChangeEvent<HTMLInputElement>): void => {
     let value = parseInt(e.target.value.replace(/\D/g, ''));
     if (isNaN(value)) { 
@@ -46,7 +42,7 @@ class SimulateViewModel extends Component<IProps> {
     const blessings = enableBlessings[category][level];
     const user = new RefineUser(category, level, materials, blessings, start, end);
     const results = user.refine(this.props.simulateResultStore.numSamples);
-    this.props.simulateResultStore.setResults(results.filter((res) => res.refineTimes != 0));
+    this.props.simulateResultStore.setResults(results.filter((res) => res.refineTimes !== 0));
   };
 
   render() {

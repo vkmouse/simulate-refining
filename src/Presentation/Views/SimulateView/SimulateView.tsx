@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 interface IProps {
   numSamples: number

@@ -33,7 +33,7 @@ class RefineRangeViewModel extends Component<IProps> {
       newValue[1] = Math.max(newValue[1], this.store.start + minDistance);
     }
 
-    if (newValue[0] != this.store.start || newValue[1] != this.store.end) {
+    if (newValue[0] !== this.store.start || newValue[1] !== this.store.end) {
       this.store.setRange(newValue[0], newValue[1]);
     }
   };

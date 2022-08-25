@@ -26,10 +26,6 @@ interface IProps {
 @observer
 class SimulateReultViewModel extends Component<IProps> {
   static defaultProps = {} as IProps;
-  
-  constructor(props: IProps) {
-    super(props);
-  }
 
   getEquipmentCost(numSuccess: number) {
     const { numSamples } = this.props.simulateResultStore;
@@ -47,8 +43,8 @@ class SimulateReultViewModel extends Component<IProps> {
     for (let i = 0; i < results.length; i++) {
       const { refineTimes, material, numSuccess } = results[i];
       materialCost[i] = 0;
-      if (refineTimes != 0) {
-        if (numSuccess == 0) {
+      if (refineTimes !== 0) {
+        if (numSuccess === 0) {
           costs[i] = Infinity;
           continue;
         }

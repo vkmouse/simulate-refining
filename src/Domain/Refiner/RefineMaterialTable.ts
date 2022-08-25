@@ -27,7 +27,7 @@ class RefineMaterialTable {
   private static table: Map<EquipmentCategory, Map<EquipmentLevel, Map<number, RefineMaterial[]>>>;
 
   static getTable() {
-    if (this.table == undefined) {
+    if (this.table === undefined) {
       this.createTable();
     }
     return this.table;
@@ -36,31 +36,31 @@ class RefineMaterialTable {
   static createTable() {
     this.table = new Map();
     const materials: RefineMaterial[] = [
-      new Phracon,
-      new Emveretarcon,
-      new Oridecon,
-      new Etherdeocon,
+      new Phracon(),
+      new Emveretarcon(),
+      new Oridecon(),
+      new Etherdeocon(),
       new Bradium(),
-      new EtelBradium,
+      new EtelBradium(),
 
-      new EnrichedOridecon,
-      new HDOridecon,
-      new EnrichedEtherdeocon,
-      new HDBradium,
-      new HDEtherdeocon,
-      new HDEtelBradium,
+      new EnrichedOridecon(),
+      new HDOridecon(),
+      new EnrichedEtherdeocon(),
+      new HDBradium(),
+      new HDEtherdeocon(),
+      new HDEtelBradium(),
 
-      new Elunium,
-      new Etherium,
-      new Carnium,
-      new EtelCarnium,
+      new Elunium(),
+      new Etherium(),
+      new Carnium(),
+      new EtelCarnium(),
 
-      new EnrichedElunium,
-      new HDElunium,
-      new EnrichedEthernium,
-      new HDEtelCarnium,
-      new HDEthernium,
-      new HDCarnium,
+      new EnrichedElunium(),
+      new HDElunium(),
+      new EnrichedEthernium(),
+      new HDEtelCarnium(),
+      new HDEthernium(),
+      new HDCarnium(),
     ];
     materials.forEach(m => {
       this.addCategory(m);

@@ -55,11 +55,11 @@ class RefineUser {
   }
 
   isBroken() {
-    return this.refineLevel == -1;
+    return this.refineLevel === -1;
   }
 
   hasBeenReached() {
-    return this.refineLevel == this.end;
+    return this.refineLevel === this.end;
   }
 
   initReineLevel() {

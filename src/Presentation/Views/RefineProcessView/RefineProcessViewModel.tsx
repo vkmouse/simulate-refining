@@ -29,12 +29,8 @@ class RefineProcessViewModel extends Component<IProps> {
     false, false, false, false, false];
   refineMaterialTable = RefineMaterialTable.getTable();
 
-  constructor(props: IProps) {
-    super(props);
-  }
-
   setMaterial = (newAlignment: RefineMaterial | null, refineLevel: number): void => {
-    if (newAlignment != null) {
+    if (newAlignment !== null) {
       this.setSelectedMaterials(refineLevel, newAlignment);
     }
   };
