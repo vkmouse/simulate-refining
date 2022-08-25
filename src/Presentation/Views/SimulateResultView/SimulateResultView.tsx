@@ -1,11 +1,12 @@
 import { TableContainer, Table, TableHead, TableBody, TableCell, TableRow, TableCellProps } from "@mui/material";
 import React, { Component } from "react";
-import SimulateResult from "../../../Domain/Model/SimulateResult";
+import { SimulateResultStat } from "../../../Domain/Model/SimulateResultStat";
 
 interface IProps {
-  numBlessings: number[]
-  costs: number[]
-  results: SimulateResult[]
+  // numBlessings: number[]
+  // costs: number[]
+  // results: SimulateResult[]
+  results: SimulateResultStat[]
 }
 
 const tableCellProps: TableCellProps = {
@@ -17,8 +18,6 @@ const tableCellProps: TableCellProps = {
 
 class SimulateReultView extends Component<IProps> {
   render() {
-    const { numBlessings, costs, results } = this.props;
-    const indices = Array(results.length).fill(0).map((_, index) => index);
     return (
       <div className='block'>
         <div className="title">模擬結果</div>
@@ -35,15 +34,15 @@ class SimulateReultView extends Component<IProps> {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {indices.map(i => {
-                  const first = `${results[i].refineLevel}➔${results[i].refineLevel + 1}`;
+                {this.props.results.map(res => {
+                  const first = `${res.refineLevel}➔${res.refineLevel + 1}`;
                   return (
-                    <TableRow key={results[i].refineLevel}>
+                    <TableRow key={res.refineLevel}>
                       <TableCell {...tableCellProps}>{first}</TableCell>
-                      <TableCell {...tableCellProps} width="22%">{results[i].refineTimes}</TableCell>
-                      <TableCell {...tableCellProps} width="22%">{numBlessings[i]}</TableCell>
-                      <TableCell {...tableCellProps} width="23%">{results[i].numSuccess}</TableCell>
-                      <TableCell {...tableCellProps} width="23%">{costs[i]}</TableCell>
+                      <TableCell {...tableCellProps} width="22%">{res.refineTimes}</TableCell>
+                      <TableCell {...tableCellProps} width="22%">{res.numBlessings}</TableCell>
+                      <TableCell {...tableCellProps} width="23%">{res.numSuccess}</TableCell>
+                      <TableCell {...tableCellProps} width="23%">{res.cost}</TableCell>
                     </TableRow>
                   );
                 })}

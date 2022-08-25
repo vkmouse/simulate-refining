@@ -7,6 +7,7 @@ import EquipmentStore from "../../../Data/Store/EquipmentStore";
 import RefineProcessStore from "../../../Data/Store/RefineProcessStore";
 import SimulateResultStore from "../../../Data/Store/SimulateResultStore";
 import MaterialStore from "../../../Data/Store/MaterialStore";
+import { SimulateResultStatCalculator } from "../../../Domain/Model/SimulateResultStat";
 
 interface IProps {
   equipmentStore: EquipmentStore
@@ -84,12 +85,26 @@ class SimulateReultViewModel extends Component<IProps> {
     return numBlessings;
   };
 
+  getTest() {
+    const { results } = this.props.simulateResultStore;
+    const materialStore = this.props.materialStore;
+    const { category, level } = this.props.equipmentStore;
+    const enableBlessings = this.props.refineProcessStore.enableBlessings[category][level];
+    const { numSamples } = this.props.simulateResultStore;
+    const equipmentPrice  = this.props.equipmentStore.price;
+    const calculator = new SimulateResultStatCalculator({
+      results, 
+      materialStore, 
+      enableBlessings, 
+      numSamples,
+      equipmentPrice});
+    return calculator.calculate();
+  }
+
   render() {
     return (
       <SimulateReultView
-        results={this.props.simulateResultStore.results}
-        costs={this.getCosts()}
-        numBlessings={this.getNumBlessings()}
+        results={this.getTest()}
       />
     );
   }
