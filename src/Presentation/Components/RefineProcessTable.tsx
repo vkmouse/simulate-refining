@@ -4,6 +4,7 @@ import RefineMaterial from "../../Domain/Model/RefineMaterial";
 
 export interface IMaterialGroupProps {
   value: RefineMaterial
+  disabled: boolean
   onChange?: (
     event: React.MouseEvent<HTMLElement>,
     newAlignment: RefineMaterial | null
@@ -12,6 +13,7 @@ export interface IMaterialGroupProps {
 
 export interface IBlessingProps {
   allowBlessing: boolean
+  disabled: boolean
   selected: boolean
   onChange: () => void
 }
@@ -52,8 +54,7 @@ function Material(props: { materialProps: RefineMaterial[],
       exclusive 
       color="primary"
       sx={{width: "75%"}} 
-      value={materialGroupProps.value} 
-      onChange={materialGroupProps.onChange}
+      {...materialGroupProps}
     >
       {materialProps.map(p => 
       <ToggleButton {...toggleButtonProps} value={p} key={p.chineseName}>{p.chineseName}</ToggleButton>)}
@@ -62,7 +63,7 @@ function Material(props: { materialProps: RefineMaterial[],
 }
 
 function Blessing(props: IBlessingProps) {
-  const { allowBlessing, selected, onChange } = props;
+  const { allowBlessing, disabled, selected, onChange } = props;
   return (
     <Box sx={{display: "flex", justifyContent: "right", width: "25%"}}>
       {allowBlessing ?
@@ -71,6 +72,7 @@ function Blessing(props: IBlessingProps) {
           sx={{...toggleButtonProps.sx, width: '80%' }} 
           selected={selected}
           onChange={onChange}
+          disabled={disabled}
           color='primary'
         >
           鐵匠的祝福

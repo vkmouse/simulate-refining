@@ -8,6 +8,7 @@ import RefineRangeViewModel from './Presentation/Views/RefineRangeView/RefineRan
 import RefineProcessViewModel from './Presentation/Views/RefineProcessView/RefineProcessViewModel';
 import SimulateResultViewModel from './Presentation/Views/SimulateResultView/SimulateResultViewModel';
 import SimulateViewModel from './Presentation/Views/SimulateView/SimulateViewModel';
+import RefineViewModel from './Presentation/Views/RefineView/RefineViewModel';
 
 function Title() {
   return <div className='title'>RO 精煉模擬器</div>;
@@ -24,6 +25,7 @@ export default class App extends Component {
         <Provider {...this.rootStore}>
           <EquipmentViewModel />
           <MaterialViewModel />
+          <RefineViewModel />
           <RefineRangeViewModel />
           <RefineProcessViewModel />
           <SimulateViewModel />

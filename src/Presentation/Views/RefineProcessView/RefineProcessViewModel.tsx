@@ -10,24 +10,51 @@ import RefineProbability from "../../../Domain/Refiner/RefineProbability";
 import { IBlessingProps, IMaterialGroupProps } from "../../Components/RefineProcessTable";
 import { ProbabilityCategory } from "../../../Core/Core";
 import RefineMaterial from "../../../Domain/Model/RefineMaterial";
+import RefineStore from "../../../Data/Store/RefineStore";
+import { autorun } from "mobx";
 
 interface IProps {
   equipmentStore: EquipmentStore
+  refineStore: RefineStore
   refineRangeStore: RefineRangeStore
   refineProcessStore: RefineProcessStore
 }
 
-@inject(RootStore.type.EQUIPMENT, RootStore.type.REFINE_RANGE, RootStore.type.REFINE_PROCESS)
+@inject(
+  RootStore.type.EQUIPMENT, 
+  RootStore.type.REFINE_RANGE, 
+  RootStore.type.REFINE_PROCESS,
+  RootStore.type.REFINE)
 @observer
 class RefineProcessViewModel extends Component<IProps> {
   static defaultProps = {} as IProps;
 
-  allowBlessings: boolean[] = [
+  allowedBlessings: boolean[] = [
     false, false, false, false, false,
     false, false, true,  true,  true,
     true,  true,  true,  true,  false,
     false, false, false, false, false];
   refineMaterialTable = RefineMaterialTable.getTable();
+
+  autoRunAllowedBlessings = () => {
+    const { category, level } = this.props.equipmentStore;
+    if (this.props.refineStore.enabledWeaponRefine) {
+      for (let i = 0; i < 10; i++) {
+        this.props.refineProcessStore.setEnableBlessing(category, level, i, false);
+        const material = this.refineMaterialTable.get(category)?.get(level)?.get(i)?.at(0);
+        if (material != undefined) {
+          this.props.refineProcessStore.setSelectedMaterials(category, level, i, material);
+        }
+      }
+      this.setState({ allowedBlessingsDisabled: true });
+    } else {
+      this.setState({ allowedBlessingsDisabled: false });
+    }
+  }
+
+  componentDidMount() {
+    autorun(this.autoRunAllowedBlessings);
+  }
 
   setMaterial = (newAlignment: RefineMaterial | null, refineLevel: number): void => {
     if (newAlignment !== null) {
@@ -75,7 +102,11 @@ class RefineProcessViewModel extends Component<IProps> {
     const materialGroupProps: IMaterialGroupProps[] = [];
     for (let i = start; i < end; i++) {
       const index = this.getSelectedMaterial(i);
-      materialGroupProps.push({value: index, onChange: (e, v) => this.setMaterial(v, i)});
+      materialGroupProps.push({
+        value: index, 
+        disabled: this.props.refineStore.enabledWeaponRefine,
+        onChange: (e, v) => this.setMaterial(v, i)
+      });
     }
     return materialGroupProps;
   }
@@ -110,7 +141,8 @@ class RefineProcessViewModel extends Component<IProps> {
     const blessingProps: IBlessingProps[] = [];
     for (let i = start; i < end; i++) {
       blessingProps.push({ 
-        allowBlessing: this.allowBlessings[i],
+        allowBlessing: this.allowedBlessings[i],
+        disabled: this.props.refineStore.enabledWeaponRefine,
         selected: this.getEnableBlessing(i),
         onChange: () => this.setBlessing(i)
       });

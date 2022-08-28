@@ -3,12 +3,15 @@ import { inject, observer } from 'mobx-react';
 import RootStore from "../../../Data/RootStore";
 import RefineRangeView from "./RefineRangeView";
 import RefineRangeStore from "../../../Data/Store/RefineRangeStore";
+import RefineStore from "../../../Data/Store/RefineStore";
+import { autorun } from "mobx";
 
 interface IProps {
+  refineStore: RefineStore;
   refineRangeStore: RefineRangeStore;
 }
 
-@inject(RootStore.type.REFINE_RANGE)
+@inject(RootStore.type.REFINE_RANGE, RootStore.type.REFINE)
 @observer
 class RefineRangeViewModel extends Component<IProps> {
   static defaultProps = {} as IProps;
@@ -17,6 +20,11 @@ class RefineRangeViewModel extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
     this.store = props.refineRangeStore;
+    autorun(() => {
+      if (this.props.refineStore.enabledWeaponRefine) {
+        this.store.setRange(this.store.start, Math.min(10, this.store.end));
+      }
+    })
   }
   
   handleChange = (
