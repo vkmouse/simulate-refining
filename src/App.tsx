@@ -1,21 +1,25 @@
 import './App.css';
-import React, { Component } from 'react';
+import React from 'react';
+import { Provider } from 'mobx-react';
 import RootStore from './Data/RootStore';
-import { observer, Provider } from 'mobx-react';
-import EquipmentViewModel from './Presentation/Views/EquipmentView/EquipmentViewModel';
-import MaterialViewModel from './Presentation/Views/MaterialView/MaterialViewModel';
-import RefineRangeViewModel from './Presentation/Views/RefineRangeView/RefineRangeViewModel';
-import RefineProcessViewModel from './Presentation/Views/RefineProcessView/RefineProcessViewModel';
-import SimulateResultViewModel from './Presentation/Views/SimulateResultView/SimulateResultViewModel';
-import SimulateViewModel from './Presentation/Views/SimulateView/SimulateViewModel';
-import RefineViewModel from './Presentation/Views/RefineView/RefineViewModel';
+import EquipmentInfoViewModel from './Presentation/Views/EquipmentInfo/EquipmentInfoViewModel';
+import MaterialInfoViewModel from './Presentation/Views/MaterialInfo/MaterialInfoViewModel';
+import RefineInfoViewModel from './Presentation/Views/RefineInfo/RefineInfoViewModel';
+import RefineRangeViewModel from './Presentation/Views/RefineRange/RefineRangeViewModel';
+import RefineProcessViewModel from './Presentation/Views/RefineProcess/RefineProcessViewModel';
+import RefineSimulationViewModel from './Presentation/Views/RefineSimulation/RefineSimulationViewModel';
+import RefineStatsViewModel from './Presentation/Views/RefineStats/RefineStatsViewModel';
 
 function Title() {
-  return <div className='title'>RO 精煉模擬器</div>;
+  return (
+    <div className='input-groups'>
+      <span className='title'>RO 精煉模擬器</span>
+      <span>最後更新日期: 2022.09.08</span>
+    </div>
+  );
 }
 
-@observer
-export default class App extends Component {
+class App extends React.Component {
   rootStore: RootStore = new RootStore();
 
   render() {
@@ -23,16 +27,18 @@ export default class App extends Component {
       <div className='container'>
         <Title />
         <Provider {...this.rootStore}>
-          <EquipmentViewModel />
-          <MaterialViewModel />
-          <RefineViewModel />
+          <EquipmentInfoViewModel />
+          <MaterialInfoViewModel />
+          <RefineInfoViewModel />
           <RefineRangeViewModel />
           <RefineProcessViewModel />
-          <SimulateViewModel />
-          <SimulateResultViewModel />
+          <RefineSimulationViewModel />
+          <RefineStatsViewModel />
         </Provider>
         <div style={{height: 300}}></div>
       </div>
     );
   }
 }
+
+export default App;

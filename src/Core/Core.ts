@@ -1,21 +1,18 @@
 export enum EquipmentCategory {
-  Weapon = 'Weapon',
-  Armor = 'Armor',
+  Weapon = 0,
+  Armor = 1,
+  Shadow = 2,
 }
 
 export enum EquipmentLevel {
-  Level1 = 'Level1',
-  Level2 = 'Level2',
-  Level3 = 'Level3',
-  Level4 = 'Level4',
-  Level5 = 'Level5',
+  Level1 = 0,
+  Level2 = 1,
+  Level3 = 2,
+  Level4 = 3,
+  Level5 = 4,
 }
 
 export enum ProbabilityCategory {
-  Normal = 'Normal',
-  Special = 'Special',
+  Normal = 0,
+  Special = 1,
 }
-
-export type EquipmentLevelTable<Type> = { [key in EquipmentLevel]: Type };
-export type EquipmentCategoryTable<Type> = { [key in EquipmentCategory]: Type };
-export type RefineQueryTable<Type> = EquipmentCategoryTable<EquipmentLevelTable<Type>>
