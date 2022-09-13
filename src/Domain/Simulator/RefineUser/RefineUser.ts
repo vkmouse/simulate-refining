@@ -17,7 +17,7 @@ class RefineUser {
       const currResults = singleSampleRefiner.refine();
       this.combineResults(currResults);
     }
-    return this.results.filter(p => p.numSuccess != 0);
+    return this.results.filter(p => p.numSuccess !== 0);
   }
 
   private combineResults(currResults: RefineResult[]) {

@@ -109,8 +109,8 @@ class RefineMaterialTable {
     const found = this.data.find(p => 
       p.equipmentCategory === equipmentCategory &&
       p.equipmentLevel === equipmentLevel &&
-      p.refineLevel == refineLevel);
-    if (found == undefined) {
+      p.refineLevel === refineLevel);
+    if (found === undefined) {
       this.data.push({
         equipmentCategory,
         equipmentLevel,

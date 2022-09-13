@@ -1,6 +1,6 @@
 interface ComponentData { 
-  name: string, 
-  value: NonNullable<unknown>,
+  name: string
+  value: NonNullable<unknown>
   disabled?: boolean
 }
 

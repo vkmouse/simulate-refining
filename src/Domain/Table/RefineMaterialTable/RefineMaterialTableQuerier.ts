@@ -11,7 +11,7 @@ export function query(props: RefineMaterialQueryProps): RefineMaterial[][] {
   const data = RefineMaterialTable.getData();
   const output = data.filter(p => equal(p, props)).map(p => p.refineMaterials);
 
-  if (output.length == 0) {
+  if (output.length === 0) {
     throw "[RefineMaterialTable] query error";
   } else {
     return output;
@@ -27,7 +27,7 @@ export function queryDistinct(props: RefineMaterialQueryProps): RefineMaterial[]
   const data = RefineMaterialTable.getMaterials();
   const output = data.filter(p => predicate(p, props));
 
-  if (output.length == 0) {
+  if (output.length === 0) {
     throw "[RefineMaterialTable] query distinct error";
   } else {
     return output;

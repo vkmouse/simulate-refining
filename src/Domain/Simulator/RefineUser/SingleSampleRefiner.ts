@@ -43,7 +43,7 @@ class SingleSampleRefiner {
       this.refineOnce();
       this.afterRefine();
     }
-    return this.results.filter(p => p.refineTimes != 0);
+    return this.results.filter(p => p.refineTimes !== 0);
   }
 
   private initialize() {
@@ -74,7 +74,7 @@ class SingleSampleRefiner {
   }
 
   private isBroken() {
-    return this.currentRefineLevel == -1;
+    return this.currentRefineLevel === -1;
   }
 
   private isSuccess() {
@@ -82,7 +82,7 @@ class SingleSampleRefiner {
   }
 
   private hasBeenReached() {
-    return this.currentRefineLevel == this.end;
+    return this.currentRefineLevel === this.end;
   }
 }
 

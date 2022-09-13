@@ -2,13 +2,13 @@ import React from "react";
 import { Box, Slider, styled } from "@mui/material";
 
 interface IProps {
-  onChange?: (start: number, end: number) => void
   value?: number[]
   min?: number
   max?: number
+  onChange?: (start: number, end: number) => void
 }
 
-const _CustomSlider = styled(Slider)(() => ({
+const CustomStyleSlider = styled(Slider)(() => ({
   height: 7,
   color: "#3B5998",
   "& .MuiSlider-thumb": {
@@ -46,7 +46,7 @@ function CustomSlider(props: IProps) {
   return (
     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center'}}>
       <Box sx={{ width: '97%' }}>
-        <_CustomSlider
+        <CustomStyleSlider
           valueLabelDisplay="on"
           getAriaLabel={() => "Minimum distance"}
           value={value}
